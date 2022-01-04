@@ -1,6 +1,7 @@
 package main.Unit;
 
 public class Marine extends Unit implements Army{
+	
 	public Marine(){
 		super(50,0);
 		this.hp = 40;

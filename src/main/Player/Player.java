@@ -1,7 +1,8 @@
 package main.Player;
 
+import java.util.ArrayList;
 import main.Unit.Unit;
 
-public abstract class Player {
-	private Unit[] units;
+public class Player {
+	ArrayList<Unit> units;
 }
