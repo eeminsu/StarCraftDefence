@@ -1,6 +1,6 @@
 package main.Unit;
 
-public class Goliath extends Unit implements Army {
+public class Goliath extends Unit implements Army, Mechanic {
 	private int missilePower = 20;
 	
 	public Goliath() {

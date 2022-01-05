@@ -33,6 +33,14 @@ public class Unit {
 			this.hp = MIN_HP;
 	}
 	
+	public int getMINERAL() {
+		return MINERAL;
+	}
+
+	public int getGAS() {
+		return GAS;
+	}
+
 	public int getPower() {
 		return this.power;
 	}

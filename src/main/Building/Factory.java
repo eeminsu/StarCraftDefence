@@ -6,6 +6,15 @@ import main.Unit.Unit;
 import main.Unit.Vulture;
 
 public class Factory extends UnitBuilding {
+	private static Factory factory = null;
+	private Factory() {}
+	
+	public static Factory getInstance() {
+		if(factory == null)
+			factory = new Factory();
+		return factory;
+	}
+	
 	@Override
 	public Unit produceUnit(String unitName) {
 		if(unitName.equalsIgnoreCase("Vulture"))

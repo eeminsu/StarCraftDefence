@@ -6,6 +6,14 @@ import main.Unit.Valkyrie;
 import main.Unit.Wraith;
 
 public class Starport extends UnitBuilding {
+	private static Starport starport = null;
+	private Starport() {}
+	
+	public static Starport getInstance() {
+		if(starport == null)
+			starport = new Starport();
+		return starport;
+	}
 
 	@Override
 	public Unit produceUnit(String unitName) {

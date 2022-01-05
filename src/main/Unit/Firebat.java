@@ -1,6 +1,6 @@
 package main.Unit;
 
-public class Firebat extends Unit implements Army{
+public class Firebat extends Unit implements Army, Bionic{
 	
 	public Firebat(){
 		super(50,25);

@@ -1,6 +1,6 @@
 package main.Unit;
 
-public class Tank extends Unit implements Army{
+public class Tank extends Unit implements Army, Mechanic{
 	
 	public Tank(){
 		super(150, 100);

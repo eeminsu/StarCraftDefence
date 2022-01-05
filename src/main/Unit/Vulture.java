@@ -1,6 +1,6 @@
 package main.Unit;
 
-public class Vulture extends Unit implements Army{
+public class Vulture extends Unit implements Army, Mechanic{
 	
 	public Vulture(){
 		super(75,0);
