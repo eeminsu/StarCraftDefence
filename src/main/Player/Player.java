@@ -1,16 +1,17 @@
 package main.Player;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+
 import main.Unit.Unit;
 
-public class Player {
-	ArrayList<Unit> units = new ArrayList<>();
+public abstract class Player {
+	LinkedList<Unit> units = new LinkedList<>();
 
-	public ArrayList<Unit> getUnits() {
+	public LinkedList<Unit> getUnits() {
 		return units;
 	}
 
-	public void setUnits(ArrayList<Unit> units) {
+	public void setUnits(LinkedList<Unit> units) {
 		this.units = units;
 	}
 }

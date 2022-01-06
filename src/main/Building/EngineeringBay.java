@@ -1,5 +1,7 @@
 package main.Building;
 
+import java.util.LinkedList;
+
 import main.Unit.Bionic;
 import main.Unit.Unit;
 
@@ -14,29 +16,25 @@ public class EngineeringBay extends TrainingBuilding implements Bionic{
 	}
 
 	@Override
-	public boolean powerUpgrade(Unit[] u) {
-		if(u == null || u.length == 0) {
-			return false;
+	public void upgrade(LinkedList<Unit> unitList, String kindOfUnit, String ability) {
+		if(unitList == null || unitList.size() == 0) {
+			return;
 		}
 		
-		for(int i=0; i<u.length; i++) {
-			if(u[i] instanceof Bionic)
-				u[i].setPower(u[i].getPower() + 1);
+		for(int i=0; i<unitList.size(); i++) {
+			Unit u = unitList.get(i);
+			
+			switch(ability) {
+			case "Power" :
+				if(u instanceof Bionic)
+					u.setPower(u.getPower() + 1);
+				break;
+			case "Armor" :
+				if(u instanceof Bionic)
+					u.setArmor(u.getArmor() + 1);
+				break;
+			}
 		}
-		return true;
-	}
-
-	@Override
-	public boolean armorUpgrade(Unit[] u) {
-		if(u == null || u.length == 0) {
-			return false;
-		}
-		
-		for(int i=0; i<u.length; i++) {
-			if(u[i] instanceof Bionic)
-				u[i].setArmor(u[i].getArmor() + 1);
-		}
-		return true;
 	}
 
 }

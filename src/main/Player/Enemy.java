@@ -1,6 +1,6 @@
 package main.Player;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import main.Unit.AlanSchezar;
 import main.Unit.EdmundDuke;
@@ -16,7 +16,7 @@ import main.Unit.Zeratul;
 
 public class Enemy extends Player{
 	public Enemy() {
-		ArrayList<Unit> list = new ArrayList<Unit>();
+		LinkedList<Unit> list = new LinkedList<Unit>();
 		
 		list.add(new JamesRaynor());
 		list.add(new GuiMontag());

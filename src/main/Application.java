@@ -1,49 +1,47 @@
 package main;
 
-import java.util.Arrays;
-
-import main.Building.Factory;
 import main.Player.Enemy;
 import main.Player.Gamer;
-import main.Unit.Unit;
 
 public class Application {
 
 	public static void main(String[] args) {
+		// 테스트 코드
+		
 		Gamer gamer = new Gamer();
-		Exchange exchange = new Exchange();
 		Enemy enemy = new Enemy();
+		Exchange exchange = new Exchange();
+		Stage stage = new Stage();
 		
-		gamer.setMineral(1000);
-		gamer.setGas(500);
-		Order order = gamer.unitOrdering("Vulture", gamer.getMineral(), gamer.getGas());
 		
-		if(exchange.getOrderForUnit(order)) {
-			Unit unit = exchange.giveFactoryUnit();
-			gamer.getUnit(unit);
+		while(true) {
+			stage.giveResources(gamer);
+			System.out.println(gamer.getMineral() + " " + gamer.getGas());
+			
+			if(exchange.getOrder(gamer.unitOrdering("Vulture")))
+				gamer.getUnit(exchange.giveUnit());
+			
+			if(exchange.getOrder(gamer.unitOrdering("Tank")))
+				gamer.getUnit(exchange.giveUnit());
+			
+			if(exchange.getOrder(gamer.unitOrdering("Tank")))
+				gamer.getUnit(exchange.giveUnit());
+			
+			if(exchange.getOrder(gamer.unitOrdering("Marine")))
+				gamer.getUnit(exchange.giveUnit());
+			
+			if(exchange.getOrder(gamer.trainOrdering("Mechanic", "Power")))
+				gamer.unitTrain(exchange.trainingUnit());
+			
+			
+			if(stage.battle(gamer, enemy)) {
+				stage.levelUp();
+			}
+			else {
+				break;
+			}
 		}
 		
-		Order order2 = gamer.unitOrdering("Marine", gamer.getMineral(), gamer.getGas());
-
-		if (exchange.getOrderForUnit(order2)) {
-			Unit unit = exchange.giveBarracksUnit();
-			gamer.getUnit(unit);
-		}
-		
-		Order order3 = gamer.unitOrdering("Wraith", gamer.getMineral(), gamer.getGas());
-
-		if (exchange.getOrderForUnit(order3)) {
-			Unit unit = exchange.giveStarportUnit();
-			gamer.getUnit(unit);
-		}
-		
-		if(gamer.getUnits() != null) {
-			System.out.println(Arrays.toString(gamer.getUnits().toArray()));
-			System.out.println(Arrays.toString(enemy.getUnits().toArray()));
-		}
-		
-		System.out.println(gamer.getMineral());
-		System.out.println(gamer.getGas());
 	}
 
 }

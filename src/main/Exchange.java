@@ -1,24 +1,49 @@
 package main;
 
+import main.Building.Armory;
 import main.Building.Barracks;
+import main.Building.EngineeringBay;
 import main.Building.Factory;
 import main.Building.Starport;
+import main.Building.TrainingBuilding;
+import main.Building.UnitBuilding;
+import main.Order.Order;
+import main.Order.TrainingOrder;
+import main.Order.UnitOrder;
 import main.Unit.Unit;
 
 public class Exchange {
-	Order order;
+	private Order order;
 	
-	public Unit giveFactoryUnit() {
-		if(order == null) {
-			System.out.println("유닛 생성 실패 : 요청된 주문이 없습니다.");
+	public Unit giveUnit() {
+		if(order == null || !(order instanceof UnitOrder)) {
+			System.out.println("유닛 생성 실패 : 요청한 주문이 올바르지 않습니다.");
 			return null;
 		}
 		else {
-			Factory factory = Factory.getInstance();
+			UnitOrder uOrder = (UnitOrder)order;
+			UnitBuilding uBuild = null;
 			
-			Unit unit = factory.produceUnit(order.unitName);
+			switch (uOrder.getUnitName()) {
+				case "Vulture":
+				case "Tank":
+				case "Goliath":
+					uBuild = Factory.getInstance();
+					break;
+				case "Marine":
+				case "Firebat":
+					uBuild = Barracks.getInstance();
+					break;
+				case "Wraith":
+				case "Battlecruiser":
+				case "Valkyire":
+					uBuild = Starport.getInstance();
+					break;
+			}
 			
-			if(order.mineral < unit.getMINERAL() || order.gas < unit.getGAS()) {
+			Unit unit = uBuild.produceUnit(uOrder.getUnitName());
+			
+			if(uOrder.getMINERAL() < unit.getMINERAL() || uOrder.getGAS() < unit.getGAS()) {
 				System.out.println("유닛 생성 실패 : 자원이 부족합니다.");
 				return null;
 			}
@@ -26,43 +51,36 @@ public class Exchange {
 		}
 	}
 	
-	public Unit giveBarracksUnit() {
-		if(order == null) {
-			System.out.println("유닛 생성 실패 : 요청된 주문이 없습니다.");
-			return null;
+	public String trainingUnit() {
+		if(order == null || !(order instanceof TrainingOrder)) {
+			System.out.println("유닛 업그레이드 실패 : 요청한 주문이 올바르지 않습니다.");
+			return "";
 		}
 		else {
-			Barracks barracks = Barracks.getInstance();
+			TrainingOrder tOrder = (TrainingOrder) order;
+			TrainingBuilding tBuild = null;
 			
-			Unit unit = barracks.produceUnit(order.unitName);
-			
-			if(order.mineral < unit.getMINERAL() || order.gas < unit.getGAS()) {
-				System.out.println("유닛 생성 실패 : 자원이 부족합니다.");
-				return null;
+			switch (tOrder.getKindOfUnit()) {
+				case "Mechanic":
+				case "AirForce":
+					tBuild = Armory.getInstance();
+					break;
+				case "Bionic":
+					tBuild = EngineeringBay.getInstance();
+					break;
 			}
-			return unit;
-		}
-	}
-
-	public Unit giveStarportUnit() {
-		if(order == null) {
-			System.out.println("유닛 생성 실패 : 요청된 주문이 없습니다.");
-			return null;
-		}
-		else {
-			Starport starport = Starport.getInstance();
 			
-			Unit unit = starport.produceUnit(order.unitName);
-			
-			if(order.mineral < unit.getMINERAL() || order.gas < unit.getGAS()) {
-				System.out.println("유닛 생성 실패 : 자원이 부족합니다.");
-				return null;
+			if(tOrder.getMINERAL() < tBuild.getMINERAL() || tOrder.getGAS() < tBuild.getGAS()) {
+				System.out.println("유닛 업그레이드 실패 : 자원이 부족합니다.");
+				return "";
 			}
-			return unit;
+			
+			tBuild.upgrade(tOrder.getUnits(), tOrder.getKindOfUnit(), tOrder.getAbility());
+			return tBuild.getMINERAL() + " " + tBuild.getGAS();
 		}
 	}
 	
-	public boolean getOrderForUnit(Order order) {
+	public boolean getOrder(Order order) {
 		if(order == null)
 			return false;
 		

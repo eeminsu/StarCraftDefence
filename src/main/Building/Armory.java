@@ -1,7 +1,8 @@
 package main.Building;
 
+import java.util.LinkedList;
+
 import main.Unit.AirForce;
-import main.Unit.Bionic;
 import main.Unit.Mechanic;
 import main.Unit.Unit;
 
@@ -14,55 +15,45 @@ public class Armory extends TrainingBuilding implements Mechanic, AirForce{
 			armory = new Armory();
 		return armory;
 	}
-
-	@Override
-	public boolean powerUpgrade(Unit[] u) {
-		if(u == null || u.length == 0) {
-			return false;
-		}
-		
-		for(int i=0; i<u.length; i++) {
-			if(u[i] instanceof Mechanic)
-				u[i].setPower(u[i].getPower() + 1);
-		}
-		return true;
-	}
-
-	@Override
-	public boolean armorUpgrade(Unit[] u) {
-		if(u == null || u.length == 0) {
-			return false;
-		}
-		
-		for(int i=0; i<u.length; i++) {
-			if(u[i] instanceof Mechanic)
-				u[i].setArmor(u[i].getArmor() + 1);
-		}
-		return true;
-	}
 	
-	public boolean powerUpgradeOfAirForce(Unit[] u) {
-		if(u == null || u.length == 0) {
-			return false;
+	@Override
+	public void upgrade(LinkedList<Unit> unitList , String kindOfUnit, String ability) {
+		if(unitList == null || unitList.size() == 0) {
+			return;
 		}
 		
-		for(int i=0; i<u.length; i++) {
-			if(u[i] instanceof AirForce)
-				u[i].setPower(u[i].getPower() + 1);
+		for(int i=0; i<unitList.size(); i++) {
+			Unit u = unitList.get(i);
+			
+			switch(kindOfUnit) {
+			case "Mechanic" : 
+				switch(ability) {
+				case "Power" :
+					if(u instanceof Mechanic)
+						u.setPower(u.getPower() + 1);
+					break;
+				case "Armor" :
+					if(u instanceof Mechanic)
+						u.setArmor(u.getArmor() + 1);
+					break;
+				}
+				break;
+			case "AirForce":
+				switch(ability) {
+				case "Power" :
+					if(u instanceof AirForce)
+						u.setPower(u.getPower() + 1);
+					break;
+				case "Armor" :
+					if(u instanceof AirForce)
+						u.setArmor(u.getArmor() + 1);
+					break;
+				}
+				break;
+			}
+			
+			unitList.set(i, u);
 		}
-		return true;
-	}
-
-	public boolean armorUpgradeOfAirForce(Unit[] u) {
-		if(u == null || u.length == 0) {
-			return false;
-		}
-		
-		for(int i=0; i<u.length; i++) {
-			if(u[i] instanceof AirForce)
-				u[i].setArmor(u[i].getArmor() + 1);
-		}
-		return true;
 	}
 
 }

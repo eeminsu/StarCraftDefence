@@ -1,6 +1,6 @@
 package main.Unit;
 
-public class Unit {
+public abstract class Unit {
 	int hp;
 	int power;
 	int armor;
@@ -18,7 +18,7 @@ public class Unit {
 		u.damaged(this.getPower());
 	}
 
-	public void damaged(int power) {
+	protected void damaged(int power) {
 		this.setHp(this.getHp() - (power - this.getArmor()));
 	}
 	

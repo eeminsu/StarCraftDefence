@@ -1,29 +1,48 @@
 package main.Player;
 
-import java.util.ArrayList;
-import main.Order;
+import java.util.LinkedList;
+
+import main.Order.TrainingOrder;
+import main.Order.UnitOrder;
 import main.Unit.Unit;
 
 public class Gamer extends Player {
 	private int mineral;
 	private int gas;
 	
-	public Order unitOrdering(String name, int mineral, int gas) {
-		return new Order(name, mineral, gas);
+	public UnitOrder unitOrdering(String unitName) {
+		return new UnitOrder(unitName, this.mineral, this.gas);
+	}
+	
+	public TrainingOrder trainOrdering(String kind, String ability) {
+		return new TrainingOrder(this.units, kind, ability, this.mineral, this.gas);
 	}
 	
 	public void getUnit(Unit u) {
-		//돈이 부족하거나 다른 이유로 유닛을 못 받아오면 그냥 return
 		if(u == null)
 			return;
 		else {
-			ArrayList<Unit> list = super.getUnits();
+			LinkedList<Unit> list = super.getUnits();
 			list.add(u);
 			
 			this.setMineral(this.getMineral() - u.getMINERAL());
 			this.setGas(this.getGas() - u.getGAS());
 			
 			super.setUnits(list);
+		}
+	}
+	
+	public void unitTrain(String completed) {
+		if(completed.equals("") || completed.equals(null))
+			return;
+		else {
+			String[] price = completed.split(" ");
+			
+			int mineral = Integer.parseInt(price[0]);
+			int gas = Integer.parseInt(price[1]);
+			
+			this.setMineral(this.getMineral() - mineral);
+			this.setGas(this.getGas() - gas);
 		}
 	}
 	
