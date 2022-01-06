@@ -13,7 +13,18 @@ import main.Order.UnitOrder;
 import main.Unit.Unit;
 
 public class Exchange {
+	private static Exchange exchange = null;
 	private Order order;
+	
+	private Exchange() {}
+	
+	public static Exchange getInstance() {
+		if(exchange == null) {
+			exchange = new Exchange();
+			return exchange;
+		}
+		return exchange;
+	}
 	
 	public Unit giveUnit() {
 		if(order == null || !(order instanceof UnitOrder)) {

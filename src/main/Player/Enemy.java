@@ -15,7 +15,9 @@ import main.Unit.Unit;
 import main.Unit.Zeratul;
 
 public class Enemy extends Player{
-	public Enemy() {
+	private static Enemy enemy = null;
+	
+	private Enemy() {
 		LinkedList<Unit> list = new LinkedList<Unit>();
 		
 		list.add(new JamesRaynor());
@@ -30,5 +32,13 @@ public class Enemy extends Player{
 		list.add(new Zeratul());
 		
 		super.setUnits(list);
+	}
+	
+	public static Enemy getInstance() {
+		if(enemy == null) {
+			enemy = new Enemy();
+			return enemy;
+		}
+		return enemy;
 	}
 }

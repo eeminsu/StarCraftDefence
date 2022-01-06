@@ -8,10 +8,19 @@ public class Application {
 	public static void main(String[] args) {
 		// 테스트 코드
 		
-		Gamer gamer = new Gamer();
-		Enemy enemy = new Enemy();
-		Exchange exchange = new Exchange();
-		Stage stage = new Stage();
+		Gamer gamer = Gamer.getInstance();
+		Enemy enemy = Enemy.getInstance();
+		Exchange exchange = Exchange.getInstance();
+		Stage stage = Stage.getInstance();
+		
+		System.out.print(" /$$      /$$ /$$$$$$$$ /$$        /$$$$$$   /$$$$$$  /$$      /$$ /$$$$$$$$\r\n");
+		System.out.print("| $$  /$ | $$| $$_____/| $$       /$$__  $$ /$$__  $$| $$$    /$$$| $$_____/\r\n");
+		System.out.print("| $$ /$$$| $$| $$      | $$      | $$  \\__/| $$  \\ $$| $$$$  /$$$$| $$      \r\n");
+		System.out.print("| $$/$$ $$ $$| $$$$$   | $$      | $$      | $$  | $$| $$ $$/$$ $$| $$$$$   \r\n");
+		System.out.print("| $$$$_  $$$$| $$__/   | $$      | $$      | $$  | $$| $$  $$$| $$| $$__/   \r\n");
+		System.out.print("| $$$/ \\  $$$| $$      | $$      | $$    $$| $$  | $$| $$\\  $ | $$| $$      \r\n");
+		System.out.print("| $$/   \\  $$| $$$$$$$$| $$$$$$$$|  $$$$$$/|  $$$$$$/| $$ \\/  | $$| $$$$$$$$\r\n");
+		System.out.print("|__/     \\__/|________/|________/ \\______/  \\______/ |__/     |__/|________/\r\n");
 		
 		
 		while(true) {

@@ -13,6 +13,17 @@ public class Stage {
 	private final int[] MINERAL = {300, 500, 700, 900, 1100, 1200, 1300, 1400, 1500, 1600};
 	private final int[] GAS = {200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100};
 
+	private static Stage stage = null;
+	private Stage() {}
+	
+	public static Stage getInstance() {
+		if(stage == null) {
+			stage = new Stage();
+			return stage;
+		}
+		return stage;
+	}
+	
 	public int getLevel() {
 		return level;
 	}

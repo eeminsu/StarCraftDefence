@@ -7,8 +7,19 @@ import main.Order.UnitOrder;
 import main.Unit.Unit;
 
 public class Gamer extends Player {
+	private static Gamer gamer = null;
 	private int mineral;
 	private int gas;
+
+	private Gamer() {}
+	
+	public static Gamer getInstance() {
+		if(gamer == null) {
+			gamer = new Gamer();
+			return gamer;
+		}
+		return gamer;
+	}
 	
 	public UnitOrder unitOrdering(String unitName) {
 		return new UnitOrder(unitName, this.mineral, this.gas);
