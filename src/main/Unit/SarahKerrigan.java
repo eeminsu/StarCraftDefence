@@ -8,6 +8,7 @@ public class SarahKerrigan extends Unit implements Army{
 		this.armor = 3;
 	}
 	
+	
 	public String toString() {
 		return "사라 케리건(" + getHp() + ","  + getPower() + ","  + getArmor() + ")";
 	}
