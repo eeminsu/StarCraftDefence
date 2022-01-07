@@ -173,6 +173,7 @@ public class Game {
 	}
 	
 	private void gameExit() {
+		System.out.println();
 		System.out.println("=======================================");
 		System.out.println("스타크래프트 영웅 디펜스");
 		System.out.println("게임이 종료되었습니다.");
