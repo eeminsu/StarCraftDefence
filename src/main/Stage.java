@@ -38,13 +38,13 @@ public class Stage {
 	public boolean battle(Gamer gamer, Enemy enemy) {
 		Queue<Unit> gUnit = gamer.getUnits();
 		Unit hero = enemy.getUnits().remove();
-		System.out.println(hero);
 		
 		while(hero.getHp() > 0 && !gUnit.isEmpty()) {
 			
 			Unit unit = gUnit.peek();
 			
-			System.out.println(gUnit);
+			System.out.println("전투 참여 유닛 목록 : " + gUnit);
+			System.out.println("현재 전투중인 유닛  : " + unit);
 			
 			while(hero.getHp() > 0 && unit.getHp() > 0) {
 				int turn = (int)(Math.random() * 2);
@@ -58,7 +58,7 @@ public class Stage {
 					unit.attack(hero);
 				}
 			}
-			System.out.println(hero.getHp());
+			System.out.println("영웅 잔여 HP     : " + hero.getHp());
 			System.out.println(".....전투중.....");
 			
 			if(unit.getHp() <= 0)
