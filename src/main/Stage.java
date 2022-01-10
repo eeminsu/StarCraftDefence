@@ -9,7 +9,7 @@ import main.Unit.Unit;
 public class Stage {
 	private int level = 1;
 	private final int MIN_LEVEL = 1;
-	private final int MAX_LEVEL = 10;
+	private final int CLEAR_LEVEL = 11;
 	private final int[] MINERAL = {300, 500, 700, 900, 1100, 1200, 1300, 1400, 1500, 1600};
 	private final int[] GAS = {200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100};
 
@@ -29,7 +29,7 @@ public class Stage {
 	}
 
 	public void setLevel(int level) {
-		if(!(MIN_LEVEL <= level && level <= MAX_LEVEL))
+		if(!(MIN_LEVEL <= level && level <= CLEAR_LEVEL))
 			return;
 		
 		this.level = level;
@@ -82,12 +82,16 @@ public class Stage {
 	}
 	
 	public void levelUp() {
-		this.level++;
+		setLevel(getLevel() + 1);
 	}
 	
+	public int getCLEAR_LEVEL() {
+		return CLEAR_LEVEL;
+	}
+
 	public void giveResources(Gamer gamer) {
-		gamer.setMineral(gamer.getMineral() + MINERAL[level]);
-		gamer.setGas(gamer.getGas() + GAS[level]);
+		gamer.setMineral(gamer.getMineral() + MINERAL[level-1]);
+		gamer.setGas(gamer.getGas() + GAS[level-1]);
 	}
 	
 	

@@ -163,13 +163,18 @@ public class Game {
 	private void unitBattleMenu() {
 		menuFrame("À¯´Ö VS ¿µ¿õ");
 		System.out.println("=======================================");
-		
+
 		if(stage.battle(gamer, enemy)) {
 			stage.levelUp();
+			
+			if(stage.getLevel() == stage.getCLEAR_LEVEL())
+				gameExit();
+			
 			stage.giveResources(gamer);
 		}
 		else
 			gameExit();
+		
 	}
 	
 	private void gameExit() {
